@@ -1,20 +1,18 @@
 import React from 'react';
 
 import {
+    Alert,
+    Badge,
     Button,
-    IconButton,
-    Switch,
-    Dialog,
-    TextField,
-    Card,
-    Checkbox,
-    CircularProgress,
-    Input,
-    LinearProgress,
-    Select,
-    Radio,
-    AppBar
-} from '@material-ui/core';
+    Image,
+    ProgressBar,
+    Label,
+    Well,
+    DropdownButton,
+    FormControl,
+    ControlLabel
+} from 'react-bootstrap';
+import './bootstrap.css'
 
 const Enum = (options) => ({__ty: 'Enum', options});
 
@@ -27,49 +25,45 @@ const sizeTy = Enum(['small', 'medium', 'large']);
 const bsStyleTy = Enum(['success', 'warning', 'danger', 'info']);
 const bsSizeTy = Enum(["large", "small", "xsmall"])
 
-Button.pdPropControls = {'variant': variantTy, size: sizeTy, 'color': colorTy, 'children': 'Text', disabled: 'Boolean', fullWidth: 'Boolean'};
-Button.pdResizable = ['width'];
+Alert.pdPropControls = {bsStyle: bsStyleTy, children: "Text"};
+Alert.pdResizable = ['height', 'width']
 
-IconButton.pdPropControls = {color: colorTy, 'children': 'Text', disabled: 'Boolean'}
-IconButton.pdResizable = ['width']
+Button.pdPropControls = {bsStyle: bsStyleTy, bsSize: bsSizeTy, type: Enum(['button', 'reset', 'submit']), active: 'Boolean', disabled: 'Boolean', block: 'Boolean', children: "Text"},
+Button.pdResizable = ['height', 'width']
 
-Switch.pdPropControls = {color: colorTy, checked: 'Boolean', disabled: 'Boolean'}
-Switch.pdResizable = [];
+ProgressBar.pdPropControls = {bsStyle: bsStyleTy, min: "Number", now: 'Number', max: "Number", active: "Boolean", striped: 'Boolean'};
+ProgressBar.pdResizable = ['width']
 
-TextField.pdPropControls = {defaultValue: 'Text', helperText: 'Text', label: 'Text', disabled: 'Boolean', error: 'Boolean', fullWidth: 'Boolean'};
-TextField.pdResizable = ['width'];
+Badge.pdPropControls = {pullRight: 'Boolean', children: 'Text'};
+Badge.pdResizable = ['height', 'width'];
 
-Checkbox.pdPropControls = {color: colorTy, checked: 'Boolean', disabled: 'Boolean'};
-Checkbox.pdResizable = [];
+Image.pdPropControls = {thumbnail: 'Boolean', responsive: 'Boolean', rounded: 'Boolean', circle: 'Boolean', src: "Text"};
+Image.pdResizable = ['height', 'width'];
 
-CircularProgress.pdPropControls = {color: colorTy, thickness: 'Number', size: 'Number', value: "Number", variant: Enum(['determinate', 'indeterminate', 'static'])}
-CircularProgress.pdResizable = []
+Label.pdPropControls = {bsStyle: bsStyleTy, children: 'Text'};
+Label.pdResizable = [];
 
-Input.pdPropControls = {defaultValue: 'Text', disabled: "Boolean", disableUnderline: "Boolean", error: 'Boolean', multiline: 'Boolean'}
-Input.pdResizable = ['width'];
+Well.pdPropControls = {bsSize: bsSizeTy, children: 'Text'}
+Well.pdResizable = ['height', 'width'];
 
-LinearProgress.pdPropControls = {value: 'Number', valueBuffer: 'Number', color: Enum(['primary', 'secondary']), variant: Enum(['determinate', 'indeterminate', 'buffer', 'query'])};
-LinearProgress.pdResizable = ['width'];
+DropdownButton.pdPropControls = {bsStyle: bsStyleTy, bsSize: bsSizeTy, title: 'Text', noCaret: 'Boolean', children: 'Text'}
+DropdownButton.pdResizable = ['height', 'width'];
 
-Select.pdPropControls = {value: 'Text', open: 'Boolean', displayEmpty: 'Boolean', children: 'Text'};
-Select.pdResizable = ['width'];
+FormControl.pdPropControls = {bsSize: bsSizeTy, type: 'Text', value: 'Text', placeholder: 'Text', onChange: 'Function'};
+FormControl.pdResizable = ['height', 'width']
 
-Radio.pdPropControls = {color: colorTy, disabled: 'Boolean', disableRipple: 'Boolean', checked: 'Boolean'}
-Radio.pdResizable = []
-
-AppBar.pdPropControls = {color: colorTy, position: Enum(['fixed', 'absolute', 'sticky', 'static']), children: 'Text'};
-AppBar.pdResizable = ['height', 'width'];
+ControlLabel.pdPropControls = {children: 'Text'}
+ControlLabel.pdResizable = ['height', 'width'];
 
 export default {
+    Alert,
+    Badge,
     Button,
-    IconButton,
-    Switch,
-    TextField,
-    Checkbox,
-    CircularProgress,
-    Input,
-    LinearProgress,
-    Select,
-    Radio,
-    AppBar
+    Image,
+    ProgressBar,
+    Label,
+    Well,
+    DropdownButton,
+    FormControl,
+    ControlLabel
 };
