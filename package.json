@@ -1,7 +1,7 @@
 {
-  "name": "pd-material",
+  "name": "pd-bootstrap",
   "version": "0.1.0",
-  "private": true,
+  "main": "src/pagedraw-specs.js",
   "dependencies": {
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
