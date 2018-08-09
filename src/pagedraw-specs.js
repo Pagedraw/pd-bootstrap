@@ -14,24 +14,38 @@ import {
 } from 'react-bootstrap';
 import './bootstrap.css'
 
-const Enum = (options) => ({__ty: 'Enum', options});
+const Enum = (options, required, defaultValue) => ({type: 'Enum', options, required, defaultValue});
 
 // Material ui types
-const colorTy = Enum(['default', 'primary', 'secondary']);
-const variantTy = Enum(['raised', 'flat', 'outlined', 'fab']);
-const sizeTy = Enum(['small', 'medium', 'large']);
+const colorTy = (required) => Enum(['default', 'primary', 'secondary'], required);
+const variantTy = (required) => Enum(['raised', 'flat', 'outlined', 'fab'], required);
+const sizeTy = (required) => Enum(['small', 'medium', 'large'], required);
 
 // React bootstrap types
-const bsStyleTy = Enum(['success', 'warning', 'danger', 'info']);
-const bsSizeTy = Enum(["large", "small", "xsmall"])
+const bsStyleTy = (required) => Enum(['success', 'warning', 'danger', 'info'], required, 'success');
+const bsSizeTy = (required) => Enum(["large", "small", "xsmall"], required)
 
-Alert.pdPropControls = {bsStyle: bsStyleTy, children: "Text"};
-Alert.pdResizable = ['height', 'width']
+Alert.pdPropControls = {bsStyle: bsStyleTy(true), children: "Text"};
+Alert.pdResizable = ['width']
 
-Button.pdPropControls = {bsStyle: bsStyleTy, bsSize: bsSizeTy, type: Enum(['button', 'reset', 'submit']), active: 'Boolean', disabled: 'Boolean', block: 'Boolean', children: "Text"},
-Button.pdResizable = ['height', 'width']
+Button.pdPropControls = {
+    bsStyle: bsStyleTy(false),
+    bsSize: bsSizeTy(true),
+    type: Enum(['button', 'reset', 'submit']),
+    active: {type: 'Checkbox', defaultValue: false},
+    disabled: {type: 'Checkbox'},
+    children: {type: "Text", required: true, defaultValue: 'Click me'}
+}
+Button.pdResizable = ['width']
 
-ProgressBar.pdPropControls = {bsStyle: bsStyleTy, min: "Number", now: 'Number', max: "Number", active: "Boolean", striped: 'Boolean'};
+ProgressBar.pdPropControls = {
+    bsStyle: bsStyleTy(true),
+    min: {type: "Number", required: true, defaultValue: 0},
+    now: {type: "Number", required: true, defaultValue: 4},
+    max: {type: "Number", required: true, defaultValue: 10},
+    active: {type: "Checkbox", required: true, defaultValue: true},
+    striped: {type: 'Checkbox', required: true, defaultValue: true}
+};
 ProgressBar.pdResizable = ['width']
 
 Badge.pdPropControls = {pullRight: 'Boolean', children: 'Text'};
@@ -40,16 +54,16 @@ Badge.pdResizable = ['height', 'width'];
 Image.pdPropControls = {thumbnail: 'Boolean', responsive: 'Boolean', rounded: 'Boolean', circle: 'Boolean', src: "Text"};
 Image.pdResizable = ['height', 'width'];
 
-Label.pdPropControls = {bsStyle: bsStyleTy, children: 'Text'};
+Label.pdPropControls = {bsStyle: bsStyleTy(true), children: 'Text'};
 Label.pdResizable = [];
 
-Well.pdPropControls = {bsSize: bsSizeTy, children: 'Text'}
+Well.pdPropControls = {bsSize: bsSizeTy(true), children: 'Text'}
 Well.pdResizable = ['height', 'width'];
 
-DropdownButton.pdPropControls = {bsStyle: bsStyleTy, bsSize: bsSizeTy, title: 'Text', noCaret: 'Boolean', children: 'Text'}
+DropdownButton.pdPropControls = {bsStyle: bsStyleTy(true), bsSize: bsSizeTy(true), title: 'Text', noCaret: 'Boolean', children: 'Text'}
 DropdownButton.pdResizable = ['height', 'width'];
 
-FormControl.pdPropControls = {bsSize: bsSizeTy, type: 'Text', value: 'Text', placeholder: 'Text', onChange: 'Function'};
+FormControl.pdPropControls = {bsSize: bsSizeTy(true), type: 'Text', value: 'Text', placeholder: 'Text', onChange: 'Function'};
 FormControl.pdResizable = ['height', 'width']
 
 ControlLabel.pdPropControls = {children: 'Text'}
