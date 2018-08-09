@@ -25,7 +25,10 @@ const sizeTy = (required) => Enum(['small', 'medium', 'large'], required);
 const bsStyleTy = (required) => Enum(['success', 'warning', 'danger', 'info'], required, 'success');
 const bsSizeTy = (required) => Enum(["large", "small", "xsmall"], required)
 
-Alert.pdPropControls = {bsStyle: bsStyleTy(true), children: "Text"};
+Alert.pdPropControls = {
+    bsStyle: bsStyleTy(true),
+    children: {type: "Text", defaultValue: 'Alert!', required: true}
+};
 Alert.pdResizable = ['width']
 
 Button.pdPropControls = {
@@ -34,7 +37,8 @@ Button.pdPropControls = {
     type: Enum(['button', 'reset', 'submit']),
     active: {type: 'Checkbox', defaultValue: false},
     disabled: {type: 'Checkbox'},
-    children: {type: "Text", required: true, defaultValue: 'Click me'}
+    children: {type: "Text", required: true, defaultValue: 'Click me'},
+    onClick: {type: 'Function'}
 }
 Button.pdResizable = ['width']
 
@@ -48,25 +52,47 @@ ProgressBar.pdPropControls = {
 };
 ProgressBar.pdResizable = ['width']
 
-Badge.pdPropControls = {pullRight: 'Boolean', children: 'Text'};
+Badge.pdPropControls = {
+    pullRight: 'Boolean',
+    children: {type: 'Text', required: true, defaultValue: '42'}
+};
 Badge.pdResizable = ['height', 'width'];
 
 Image.pdPropControls = {thumbnail: 'Boolean', responsive: 'Boolean', rounded: 'Boolean', circle: 'Boolean', src: "Text"};
 Image.pdResizable = ['height', 'width'];
 
-Label.pdPropControls = {bsStyle: bsStyleTy(true), children: 'Text'};
+Label.pdPropControls = {
+    bsStyle: bsStyleTy(true),
+    children: {type: 'Text', required: true, defaultValue: 'Label me'}
+};
 Label.pdResizable = [];
 
-Well.pdPropControls = {bsSize: bsSizeTy(true), children: 'Text'}
+Well.pdPropControls = {
+    bsSize: bsSizeTy(true),
+    children: {type: 'Text', defaultValue: 'Well...'}
+}
 Well.pdResizable = ['height', 'width'];
 
-DropdownButton.pdPropControls = {bsStyle: bsStyleTy(true), bsSize: bsSizeTy(true), title: 'Text', noCaret: 'Boolean', children: 'Text'}
+DropdownButton.pdPropControls = {
+    bsStyle: bsStyleTy(true),
+    bsSize: bsSizeTy(true),
+    title: {type: 'Text', defaultValue: 'Dropdown'},
+    noCaret: 'Boolean',
+    children: {type: [{type: 'Text'}]}
+}
 DropdownButton.pdResizable = ['height', 'width'];
 
-FormControl.pdPropControls = {bsSize: bsSizeTy(true), type: 'Text', value: 'Text', placeholder: 'Text', onChange: 'Function'};
+FormControl.pdPropControls = {
+    bsSize: bsSizeTy(true),
+    type: 'Text',
+    value: 'Text',
+    placeholder: {type: 'Text', defaultValue: 'Placeholder'},
+    onChange: 'Function'};
 FormControl.pdResizable = ['height', 'width']
 
-ControlLabel.pdPropControls = {children: 'Text'}
+ControlLabel.pdPropControls = {
+    children: {type: 'Text', defaultValue: 'This is a control', required: true}
+}
 ControlLabel.pdResizable = ['height', 'width'];
 
 export default {
